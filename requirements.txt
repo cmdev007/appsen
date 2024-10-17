@@ -1,0 +1,14 @@
+google-ai-generativelanguage==0.6.10
+google-api-core==2.20.0
+google-api-python-client==2.148.0
+google-auth==2.35.0
+google-auth-httplib2==0.2.0
+google-generativeai==0.8.3
+google-play-scraper==1.2.7
+googleapis-common-protos==1.65.0
+huggingface-hub==0.25.1
+llama_cpp_python==0.3.1
+nltk==3.9.1
+streamlit==1.38.0
+torch==2.2.2+rocm5.6
+transformers==4.45.1
