@@ -4,7 +4,7 @@ from nltk.sentiment import SentimentIntensityAnalyzer
 import torch
 import logging
 from review_fetcher import fetch_app_reviews
-from llama_cpp import Llama
+# from llama_cpp import Llama
 import time
 import google.generativeai as genai
 import warnings
@@ -91,29 +91,30 @@ def summarize_text(text, stop_analysis, max_length=512, batch_size=32):
     return unique_summary
 
 def analyze_with_llama(summary):
-    # Initialize Llama model
-    llm = Llama(model_path="/mnt/sharedssd/preet/llama.cpp/models/Meta-Llama-3-7B-29Layers.Q4_K_M.gguf", n_ctx=2048, n_gpu_layers=-1)
+    # # Initialize Llama model
+    # llm = Llama(model_path="/mnt/sharedssd/preet/llama.cpp/models/Meta-Llama-3-7B-29Layers.Q4_K_M.gguf", n_ctx=2048, n_gpu_layers=-1)
 
-    # Prepare the prompt
-    prompt = f"""Based on the following summary of negative reviews, identify and list the top 5 problems:
+    # # Prepare the prompt
+    # prompt = f"""Based on the following summary of negative reviews, identify and list the top 5 problems:
 
-    Summary: {summary}
+    # Summary: {summary}
 
-    Top 5 problems:
-    1. """
+    # Top 5 problems:
+    # 1. """
 
-    # Generate response
-    response = llm(prompt, max_tokens=500, stop=["6.", "\n\n"], echo=True)
+    # # Generate response
+    # response = llm(prompt, max_tokens=500, stop=["6.", "\n\n"], echo=True)
 
-    # Extract and return the generated problems
-    f = open("temp.txt", "w")
-    f.write(str(response))
-    f.close()
-    generated_text = response['choices'][0]['text']
-    if not generated_text.strip():
-        return "No problems identified"
-    top_problems = generated_text.split("1. ")[1:]
-    return top_problems
+    # # Extract and return the generated problems
+    # f = open("temp.txt", "w")
+    # f.write(str(response))
+    # f.close()
+    # generated_text = response['choices'][0]['text']
+    # if not generated_text.strip():
+    #     return "No problems identified"
+    # top_problems = generated_text.split("1. ")[1:]
+    # return top_problems
+    return None
 
 
 def analyze_with_gemini(summary):
