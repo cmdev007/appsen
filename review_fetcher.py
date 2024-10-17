@@ -5,7 +5,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-def fetch_app_reviews(app_name, num_reviews=50, max_workers=5):
+def fetch_app_reviews(app_name, num_reviews=500, max_workers=5):
     logging.info(f"Starting to fetch reviews for app: {app_name}")
     
     result = google_play_scraper.search(app_name)
