@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 # Download necessary NLTK data
 nltk.download('vader_lexicon', quiet=True)
-nltk.download('punkt', quiet=True)
+nltk.download('punkt_tab', quiet=True)
 
 sia = SentimentIntensityAnalyzer()
 
