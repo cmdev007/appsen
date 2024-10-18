@@ -17,11 +17,15 @@ if 'analysis_complete' not in st.session_state:
 if 'analysis_stopped' not in st.session_state:
     st.session_state.analysis_stopped = False
 
-st.set_page_config(page_title="App Review Analyzer", page_icon="📱")
+st.set_page_config(page_title="AppSen: App Review Analyzer", page_icon="📱")
 
-st.title("App Review Analyzer")
+st.title("📱 AppSen: App Review Analyzer")
 
-app_name = st.text_input("Enter the app name:")
+st.markdown("""
+Welcome to **AppSen**, an AI-powered tool to analyze app reviews and identify key issues users are experiencing.
+""")
+
+app_name = st.text_input("🔍 **Enter the app name:**")
 
 # Create a flag to control the analysis process
 stop_analysis = threading.Event()
@@ -36,7 +40,7 @@ def run_analysis():
     else:
         result_queue.put(None)
 
-if st.button("Analyze Reviews"):
+if st.button("🚀 Analyze Reviews"):
     if app_name:
         stop_analysis.clear()
         st.session_state.analysis_complete = False
@@ -46,7 +50,7 @@ if st.button("Analyze Reviews"):
         analysis_thread.start()
 
         # Define the stop button outside the loop
-        stop_button = st.button("Stop Analysis", key=st.session_state.stop_button_key)
+        stop_button = st.button("🛑 Stop Analysis", key=st.session_state.stop_button_key)
 
         with st.spinner("Analyzing reviews... This may take a few minutes."):
             while analysis_thread.is_alive():
@@ -68,15 +72,21 @@ if st.button("Analyze Reviews"):
             st.session_state.analysis_stopped = True
 
         if st.session_state.analysis_complete:
-            # st.subheader("Analysis Results")
-            # st.write("Summary:", st.session_state.summary)
-            st.subheader("Top 5 Problems Identified")
+            st.subheader("📊 Analysis Results")
+            # st.markdown("### 📝 Summary")
+            # st.info(st.session_state.summary)
+            st.markdown("### 🔝 Top Problems Identified")
             st.write(st.session_state.top_problems)
-            # for i, problem in enumerate(st.session_state.top_problems, 1):
         elif st.session_state.analysis_stopped:
             st.warning("Analysis was stopped before completion.")
     else:
         st.warning("Please enter an app name.")
-        
+
 st.sidebar.markdown("## About")
-st.sidebar.info("This app analyzes reviews for a given app and identifies the top problems using AI.")
+st.sidebar.info("""
+**AppSen** analyzes reviews for a given app and identifies the top problems using AI.
+
+- 🔍 Enter the app name.
+- 🚀 Click **Analyze Reviews** to start.
+- 🛑 Use **Stop Analysis** to halt the process anytime.
+""")
