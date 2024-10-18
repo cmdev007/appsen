@@ -32,12 +32,27 @@ def analyze_with_gemini(negative_reviews, gemini_api):
 
     # Set up the model
     model = genai.GenerativeModel('gemini-pro')
-    prompt = f"""Summarize the following negative reviews and identify the top 5 problems:
+    prompt = f"""
+                Please analyze the following negative app reviews and provide:
+
+                1. A concise summary of the main issues users are experiencing.
+
+                2. A numbered list of the top 5 problems mentioned, ordered by their significance.
 
                 Negative Reviews:
                 {negative_reviews}
 
-                Summary and Top 5 Problems:
+                Your response should be formatted as:
+
+                Summary:
+                [Your summary here]
+
+                Top 5 Problems:
+                1. Problem 1
+                2. Problem 2
+                3. Problem 3
+                4. Problem 4
+                5. Problem 5
                 """
     response = model.generate_content(prompt)
     return response.text
