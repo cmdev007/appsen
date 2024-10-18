@@ -5,6 +5,8 @@ import time
 import uuid
 import queue
 
+gemini_api = st.secrets["gemini_api"]
+
 # Initialize session state variables
 if 'summary' not in st.session_state:
     st.session_state.summary = None
@@ -28,7 +30,7 @@ stop_analysis = threading.Event()
 result_queue = queue.Queue()
 
 def run_analysis():
-    summary, top_problems = analyze_app_reviews(app_name, stop_analysis)
+    summary, top_problems = analyze_app_reviews(app_name, stop_analysis, gemini_api)
     if summary is not None and top_problems is not None:
         result_queue.put((summary, top_problems))
     else:
