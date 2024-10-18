@@ -21,7 +21,7 @@ def fetch_app_reviews(app_name, num_reviews=1000, max_workers=5):
             app_id,
             lang='en',
             country='us',
-            sort=Sort.NEWEST,
+            sort=Sort.MOST_RELEVANT,
             count=min(num_reviews, 100),
             continuation_token=continuation_token
         )
