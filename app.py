@@ -90,3 +90,7 @@ st.sidebar.info("""
 - 🚀 Click **Analyze Reviews** to start.
 - 🛑 Use **Stop Analysis** to halt the process anytime.
 """)
+
+# Add developer remark to the sidebar
+st.sidebar.markdown("## Developer")
+st.sidebar.info("Developed by Darshan Vithlani.")
